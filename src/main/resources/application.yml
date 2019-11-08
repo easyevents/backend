@@ -1,0 +1,30 @@
+management:
+  endpoint:
+    health:
+      enabled: true
+
+spring:
+  jpa.hibernate:
+    ddl-auto: validate
+  jpa.properties.hibernate:
+    show_sql: true
+    format_sql: true
+    jdbc.lob.non_contextual_creation: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      connection-timeout: 10000
+      maximum-pool-size: 50
+      leak-detection-threshold: 60000
+      idle-timeout: 60000
+      minimum-idle: 3
+      driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:liquibase/changelog.yml
+
+app:
+  root-package: com.easyevents.ee
+  base-path: /
